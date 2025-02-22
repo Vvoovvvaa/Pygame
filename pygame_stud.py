@@ -1,11 +1,11 @@
 import pygame
 
+
 pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((640, 360))
 pygame.display.set_caption("miner vs bats")
 
-# Загрузка изображений
 try:
     icon = pygame.image.load('images/icon.png.png')
     bg = pygame.image.load('images/bg1.png.png').convert_alpha()
@@ -32,7 +32,6 @@ except pygame.error as e:
 
 pygame.display.set_icon(icon)
 
-# Масштабирование спрайтов
 player_width = go_right[0].get_width() // 4  
 player_height = go_right[0].get_height() // 4  
 
@@ -40,7 +39,6 @@ go_right = [pygame.transform.scale(image, (player_width, player_height)) for ima
 go_left = [pygame.transform.scale(image, (player_width, player_height)) for image in go_left]
 stay = [pygame.transform.scale(image, (player_width, player_height)) for image in stay]
 
-# Переменные
 player_health = 3
 money_count = 0
 win_count = 10
@@ -81,7 +79,6 @@ pygame.time.set_timer(enemy_timer, 1500)
 money_timer = pygame.USEREVENT + 2
 pygame.time.set_timer(money_timer, 3500)
 
-# Основной игровой цикл
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -158,12 +155,6 @@ while running:
                 money_sound.play()
                 money_objects.remove(money_rect)
         
-        
-
-
-        
-       
-
         if money_count >= win_count:
             gameplay = False
             game_win = True
@@ -194,7 +185,6 @@ while running:
         bullets.clear()
         bullets_left = 15
 
-    # Проверка на клик по кнопке перезапуска игры
     mouse = pygame.mouse.get_pos()
     if restart_text_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
         gameplay = True
